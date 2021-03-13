@@ -1,0 +1,43 @@
+name: btrfs-progs-gael
+base: core20
+summary: Open Source Continuous File Synchronization
+description: |
+  Syncthing is a continuous file synchronization program. It synchronizes files between 
+  two or more computers in real time, safely protected from prying eyes. Your data is 
+  your data alone and you deserve to choose where it is stored, whether it is shared with 
+  some third party, and how it's transmitted over the internet.
+
+grade: stable 
+confinement: strict
+
+architectures:
+  - build-on: arm64
+  - build-on: armhf
+  - build-on: amd64
+
+license: "GPL-3.0-or-later"
+
+apps:
+  btrfs:
+    command: btrfs
+    environment:
+      HOME: ${SNAP_USER_COMMON}
+      XDG_CONFIG_HOME: ${SNAP_USER_COMMON}
+    plugs:
+    - home
+
+parts:
+  app:
+    plugin: make
+    source: https://github.com/kdave/btrfs-progs
+    source-tag: v5.11
+    source-type: git
+    build-packages:
+      - build-essential
+      - libuuid1
+      - libblkid1
+      - liblzo2-2
+      - zlib1g
+      - libzstd1
+      - libattr1
+
