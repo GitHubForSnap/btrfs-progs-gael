@@ -1,43 +1,47 @@
 name: btrfs-progs-gael
 base: core20
-summary: Open Source Continuous File Synchronization
+summary: Btrfs Progs
 description: |
-  Syncthing is a continuous file synchronization program. It synchronizes files between 
-  two or more computers in real time, safely protected from prying eyes. Your data is 
-  your data alone and you deserve to choose where it is stored, whether it is shared with 
-  some third party, and how it's transmitted over the internet.
+  btrfs is a modern copy on write (CoW) filesystem for Linux aimed at implementing advanced features while also focusing on fault tolerance, repair and easy administration. Its main features and benefits are:
+  * Snapshots which do not make the full copy of files
+  * RAID - support for software-based RAID 0, RAID 1, RAID 10
+  * Self-healing - checksums for data and metadata, automatic detection of silent data corruptions
 
+version: 5.11+snap1
 grade: stable 
-confinement: strict
+confinement: devmode
 
 architectures:
-  - build-on: arm64
-  - build-on: armhf
   - build-on: amd64
 
 license: "GPL-3.0-or-later"
 
 apps:
   btrfs:
-    command: btrfs
-    environment:
-      HOME: ${SNAP_USER_COMMON}
-      XDG_CONFIG_HOME: ${SNAP_USER_COMMON}
-    plugs:
-    - home
+    command: usr/local/bin/btrfs
+    plugs: [block-devices, removable-media, mount-observe]
+
+  mkfs-btrfs:
+    command: usr/local/bin/mkfs.btrfs
+    plugs: [block-devices, removable-media, mount-observe]
 
 parts:
   app:
-    plugin: make
+    plugin: autotools
     source: https://github.com/kdave/btrfs-progs
     source-tag: v5.11
     source-type: git
     build-packages:
       - build-essential
-      - libuuid1
-      - libblkid1
-      - liblzo2-2
-      - zlib1g
-      - libzstd1
-      - libattr1
+      - pkgconf
+      - xmlto
+      - asciidoc
+      - python3.8-dev
+      - libext2fs-dev
+      - uuid-dev
+      - libblkid-dev
+      - liblzo2-dev
+      - zlib1g-dev
+      - libzstd-dev
+      - libattr1-dev
 
