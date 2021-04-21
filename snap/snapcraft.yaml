@@ -7,7 +7,7 @@ description: |
   * RAID - support for software-based RAID 0, RAID 1, RAID 10
   * Self-healing - checksums for data and metadata, automatic detection of silent data corruptions
 
-version: 5.11+snap1
+version: 5.11.1
 grade: stable 
 confinement: strict
 
@@ -29,7 +29,7 @@ parts:
   app:
     plugin: autotools
     source: https://github.com/kdave/btrfs-progs
-    source-tag: v5.11
+    source-tag: v5.11.1
     source-type: git
     build-packages:
       - build-essential
