@@ -19,11 +19,11 @@ license: "GPL-3.0-or-later"
 apps:
   btrfs:
     command: usr/local/bin/btrfs
-    plugs: [block-devices, removable-media, mount-observe]
+    #    plugs: [block-devices, removable-media, mount-observe, hardware-observe, fuse-support, system-observe]
 
   mkfs-btrfs:
     command: usr/local/bin/mkfs.btrfs
-    plugs: [block-devices, removable-media, mount-observe]
+    #    plugs: [block-devices, removable-media, mount-observe, hardware-observe, fuse-support, system-observe]
 
 parts:
   app:

@@ -17,11 +17,7 @@ snapcraft --debug
 **Install**
 
 ```bash
-sudo snap install btrfs-progs-gael_5.11.1_amd64.snap --dangerous
-
-sudo snap connect btrfs-progs-gael:block-devices
-sudo snap connect btrfs-progs-gael:mount-observe
-sudo snap connect btrfs-progs-gael:removable-media
+sudo snap install btrfs-progs-gael_5.11.1_amd64.snap --devmode
 
 sudo snap alias btrfs-progs-gael.btrfs btrfs
 sudo snap alias btrfs-progs-gael.mkfs-btrfs mkfs.btrfs
