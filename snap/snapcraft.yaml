@@ -16,6 +16,10 @@ architectures:
 
 license: "GPL-3.0-or-later"
 
+layout:
+  /var/lib/btrfs:
+    bind: $SNAP_DATA/var/lib/btrfs
+
 apps:
   btrfs:
     command: usr/local/bin/btrfs

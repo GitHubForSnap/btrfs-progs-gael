@@ -1,0 +1,3 @@
+#!/bin/sh
+
+mkdir -p $SNAP_DATA/var/lib/btrfs
