@@ -17,7 +17,7 @@ snapcraft --debug
 **Install**
 
 ```bash
-sudo snap install btrfs-progs-gael_5.11+snap1_amd64.snap
+sudo snap install btrfs-progs-gael_5.11.1_amd64.snap
 
 sudo snap connect btrfs-progs-gael:block-devices
 sudo snap connect btrfs-progs-gael:mount-observe
