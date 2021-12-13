@@ -1,5 +1,7 @@
 # [btrfs-progs-gael](https://snapcraft.io/btrfs-progs-gael)
 
+_This is NOT an original piece of work, just a snap of BTRFS Progs_
+
 btrfs is a modern copy on write (CoW) filesystem for Linux aimed at implementing advanced features while also focusing on fault tolerance, repair and easy administration. Its main features and benefits are:
 
 * Snapshots which do not make the full copy of files
