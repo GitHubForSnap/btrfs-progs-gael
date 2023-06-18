@@ -30,8 +30,3 @@ sudo snap alias btrfs-progs-gael.btrfs-scrub btrfs-scrub
 **Scrubbing**
 
 * Results stored in $SNAP_DATA/var/lib/btrfs
-
-**Snapshots**
-
-* Daily data snapshots at 1am (last 7 are kept)
-* Weekly data snapshots on Mondays (last 4 are kept)
