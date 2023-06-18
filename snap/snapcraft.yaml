@@ -1,5 +1,5 @@
 name: btrfs-progs-gael
-base: core20
+base: core22
 summary: Btrfs Progs
 description: |
   btrfs is a modern copy on write (CoW) filesystem for Linux aimed at implementing advanced features while also focusing on fault tolerance, repair and easy administration. Its main features and benefits are:
@@ -7,7 +7,7 @@ description: |
   * RAID - support for software-based RAID 0, RAID 1, RAID 10
   * Self-healing - checksums for data and metadata, automatic detection of silent data corruptions
 
-version: 5.11.1
+version: 5.16.2
 grade: stable 
 confinement: strict
 
@@ -17,35 +17,33 @@ architectures:
 license: "GPL-3.0-or-later"
 
 layout:
-  /var/lib/btrfs:
+  /var/lib/btrfs:                       # Needed to create btrfs sockets
     bind: $SNAP_DATA/var/lib/btrfs
 
 apps:
   btrfs:
-    command: usr/local/bin/btrfs
-    #    plugs: [block-devices, removable-media, mount-observe, hardware-observe, fuse-support, system-observe]
+    command: bin/btrfs
 
   mkfs-btrfs:
-    command: usr/local/bin/mkfs.btrfs
-    #    plugs: [block-devices, removable-media, mount-observe, hardware-observe, fuse-support, system-observe]
+    command: sbin/mkfs.btrfs
+
+  btrfs-scrub:
+    command: scripts/btrfs-scrub
+
+  btrfs-snap:
+    command: scripts/btrfs-snap
 
 parts:
-  app:
-    plugin: autotools
-    source: https://github.com/kdave/btrfs-progs
-    source-tag: v5.11.1
-    source-type: git
-    build-packages:
-      - build-essential
-      - pkgconf
-      - xmlto
-      - asciidoc
-      - python3.8-dev
-      - libext2fs-dev
-      - uuid-dev
-      - libblkid-dev
-      - liblzo2-dev
-      - zlib1g-dev
-      - libzstd-dev
-      - libattr1-dev
+  utils:
+    plugin: dump
+    source: snap/local/utils
+    organize:
+      '*' : scripts/
+    prime:
+      - scripts/btrfs-scrub
+      - scripts/btrfs-snap
 
+  app:
+    plugin: nil
+    stage-packages:
+      - btrfs-progs

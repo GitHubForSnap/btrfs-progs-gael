@@ -1,0 +1,22 @@
+#!/bin/bash
+
+DEVICE_LIST=`grep ' btrfs ' /proc/mounts | awk '{ print $1 }' | sort -u`
+
+for DEVICE in $DEVICE_LIST
+do
+   MOUNT_POINT=`grep "$DEVICE" /proc/mounts | awk '{ print $2 }' | head -n 1`
+
+   echo "Start scrubbing $MOUNT_POINT"
+
+   btrfs balance start -musage=0 -v "$MOUNT_POINT" 2>&1
+
+   sleep 10
+
+   btrfs balance start -dusage=0 -v "$MOUNT_POINT" 2>&1
+
+   sleep 10
+
+   btrfs balance start -dusage=20 -v "$MOUNT_POINT" 2>&1
+
+   btrfs scrub start -B -d "$MOUNT_POINT" 2>&1
+done
