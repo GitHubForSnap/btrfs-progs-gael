@@ -1,5 +1,5 @@
 name: btrfs-progs-gael
-base: core22
+base: core24
 summary: Btrfs Progs
 description: |
   btrfs is a modern copy on write (CoW) filesystem for Linux aimed at implementing advanced features while also focusing on fault tolerance, repair and easy administration. Its main features and benefits are:
@@ -7,12 +7,12 @@ description: |
   * RAID - support for software-based RAID 0, RAID 1, RAID 10
   * Self-healing - checksums for data and metadata, automatic detection of silent data corruptions
 
-version: 5.16.2
+version: "v6.6.3"
 grade: stable 
 confinement: strict
 
-architectures:
-  - build-on: amd64
+platforms:
+  amd64:
 
 license: "GPL-3.0-or-later"
 

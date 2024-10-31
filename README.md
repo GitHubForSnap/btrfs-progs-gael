@@ -19,7 +19,7 @@ snapcraft --debug
 **Install**
 
 ```bash
-sudo snap install btrfs-progs-gael_5.16.2_amd64.snap --devmode
+sudo snap install btrfs-progs-gael_v6.6.3_amd64.snap --devmode
 
 sudo snap alias btrfs-progs-gael.btrfs btrfs
 sudo snap alias btrfs-progs-gael.mkfs-btrfs mkfs.btrfs
